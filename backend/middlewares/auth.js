@@ -3,17 +3,17 @@ const { messages } = require('../utils/constants');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 const auth = (req, res, next) => {
-  const { jwt } = req.cookies;
+  // const { jwt } = req.cookies;
 
-  if (!jwt) {
-    next(new UnauthorizedError(messages.shared.badToken));
-    return;
-  }
-
+  // if (!jwt) {
+  //   next(new UnauthorizedError(messages.shared.badToken));
+  //   return;
+  // }
+  const token = req.headers.authorization;
   let payload;
 
   try {
-    payload = jsonwebtoken.verify(jwt, 'some-secret-key');
+    payload = jsonwebtoken.verify(token, 'some-secret-key');
   } catch (err) {
     next(new UnauthorizedError(messages.shared.badToken));
     return;

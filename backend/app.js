@@ -7,8 +7,9 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const routes = require('./routes');
 const handleErrors = require('./middlewares/errors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000, DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 5000, DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
 
@@ -25,7 +26,10 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use(requestLogger);
 app.use(routes);
+
+app.use(errorLogger);
 app.use(errors());
 app.use(handleErrors);
 
