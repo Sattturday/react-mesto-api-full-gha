@@ -1,0 +1,24 @@
+.page {
+  background-color: #000;
+  max-width: 1280px;
+  margin: auto;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+.page_hidden {
+  overflow: hidden;
+  padding-right: 17px;
+}
+
+@media screen and (max-width: 910px) {
+  .page_hidden {
+    padding-right: 0;
+  }
+}
