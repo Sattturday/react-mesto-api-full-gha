@@ -12,8 +12,7 @@ const getCards = (req, res, next) => {
 
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
-  const owner = req.user._id;
-
+  const owner = req.user;
   Card.create({ name, link, owner })
     .then((card) => res.status(statuses.created).send(card))
     .catch((err) => {
@@ -48,7 +47,7 @@ const addLikeCard = (req, res, next) => {
 
   Card.findByIdAndUpdate(
     cardId,
-    { $addToSet: { likes: req.user._id } },
+    { $addToSet: { likes: req.user } },
     { new: true },
   )
     .orFail(new NotFoundError(messages.cards.notFound))

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+import { BASE_URL } from './utils';
 
 const _checkAnswer = (res) => {
   if (res.ok) {
@@ -31,7 +31,9 @@ export const login = ({ email, password }) => {
   });
 };
 
-export const checkToken = (token) => {
+export const checkToken = () => {
+  const token = localStorage.getItem('token');
+
   return _request('/users/me', {
     method: 'GET',
     headers: {

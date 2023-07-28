@@ -48,7 +48,7 @@ function App() {
 
       api
         .getInitialCards()
-        .then((res) => setCards(res))
+        .then((res) => setCards(res.reverse()))
         .catch((err) => console.error(err))
         .finally(() => setIsLoadingContent(false));
     }
@@ -116,7 +116,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((id) => id === currentUser._id);
 
     function makeRequest() {
       return api.toggleLikeCard(card._id, isLiked).then((newCard) => {
@@ -168,13 +168,15 @@ function App() {
 
   function tokenCheck() {
     const token = localStorage.getItem('token');
+
     function makeRequest() {
-      return checkToken(token).then((data) => {
-        setUserEmail(data.data.email);
+      return checkToken().then((data) => {
+        setUserEmail(data.email);
         setLoggedIn(true);
         navigate('/react-mesto-auth');
       });
     }
+
     if (token) {
       handleSubmit(makeRequest, false);
     }

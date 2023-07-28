@@ -22,13 +22,7 @@ const createUser = (req, res, next) => {
     }))
     .then((createdUser) => {
       const { _id } = createdUser;
-      res.status(statuses.created).send({
-        _id,
-        name,
-        about,
-        avatar,
-        email,
-      });
+      res.status(statuses.created).send({ data: { _id, email } });
     })
     .catch((err) => {
       if (err.code === 11000) {
@@ -68,7 +62,7 @@ const login = (req, res, next) => {
           //   sameSite: true,
           // });
           // res.send({ _id: user._id });
-          res.status(200).send({ data: token });
+          res.status(200).send({ token });
         })
         .catch(next);
     })

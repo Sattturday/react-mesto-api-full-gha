@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const routes = require('./routes');
 const handleErrors = require('./middlewares/errors');
@@ -25,6 +26,7 @@ mongoose
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 app.use(requestLogger);
 app.use(routes);

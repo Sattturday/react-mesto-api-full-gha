@@ -9,7 +9,13 @@ const auth = (req, res, next) => {
   //   next(new UnauthorizedError(messages.shared.badToken));
   //   return;
   // }
-  const token = req.headers.authorization;
+  const { authorization } = req.headers;
+  if (!authorization.startsWith(('Bearer'))) {
+    next(new UnauthorizedError(messages.shared.badToken));
+    return;
+  }
+
+  const token = authorization.split('Bearer ')[1];
   let payload;
 
   try {
