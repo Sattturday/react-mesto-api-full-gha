@@ -1,6 +1,7 @@
 # Optional REPL history
 .idea
 .vscode
+.github
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
