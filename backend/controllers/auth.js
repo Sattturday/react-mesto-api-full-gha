@@ -6,6 +6,8 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 const { ConflictError } = require('../errors/ConflictError');
 const BadRequestError = require('../errors/BadRequestError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
@@ -52,9 +54,9 @@ const login = (req, res, next) => {
             throw new UnauthorizedError(messages.users.badLogin);
           }
 
-          const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
-            expiresIn: '7d',
-          });
+          const token = jwt.sign({ _id: user._id },
+            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+            { expiresIn: '7d' });
           // res
           // .cookie('jwt', token, {
           //   maxAge: 3600000 * 24 * 7,
