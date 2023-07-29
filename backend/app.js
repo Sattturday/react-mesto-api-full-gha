@@ -12,7 +12,7 @@ const routes = require('./routes');
 const handleErrors = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT, DATABASE_URL } = process.env;
+const { PORT = 3000, DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
 app.use(cors());
@@ -30,13 +30,12 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-
-app.use(requestLogger);
 app.use(routes);
 
 app.use(errorLogger);
