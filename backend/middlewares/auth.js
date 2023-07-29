@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
   //   return;
   // }
   const { authorization } = req.headers;
-  if (!authorization || !authorization.startsWith('Bearer')) {
+  if (!authorization.startsWith('Bearer')) {
     next(new UnauthorizedError(messages.shared.badToken));
     return;
   }
