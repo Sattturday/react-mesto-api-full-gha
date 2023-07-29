@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://api.sattturday.nomoredomains.sbs';
+export const BASE_URL = 'https://api.sattturday.nomoredomains.sbs';
