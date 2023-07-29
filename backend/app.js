@@ -27,7 +27,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use(cors({ origin: 'https://sattturday.nomoredomains.sbs' }));
+app.use(cors());
 app.use(requestLogger);
 app.use(routes);
 
