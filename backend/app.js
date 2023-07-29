@@ -15,7 +15,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT, DATABASE_URL } = process.env;
 
 const app = express();
-app.use(cors()); // разрешаем все кроссбраузерные запросы
+app.use(cors());
 
 mongoose
   .connect(DATABASE_URL)
