@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.69.214
+IP 158.160.69.214
 
 Frontend https://sattturday.nomoredomains.sbs
 
