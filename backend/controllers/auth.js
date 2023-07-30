@@ -64,7 +64,6 @@ const login = (req, res, next) => {
               sameSite: true,
             });
           res.send(user);
-          // res.status(200).send({ token });
         })
         .catch(next);
     })
