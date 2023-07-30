@@ -24,6 +24,7 @@ export const register = ({ email, password }) => {
 export const login = ({ email, password }) => {
   return _request('/signin', {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -31,14 +32,25 @@ export const login = ({ email, password }) => {
   });
 };
 
-export const checkToken = () => {
-  const token = localStorage.getItem('token');
-
-  return _request('/users/me', {
-    method: 'GET',
+export const logout = () => {
+  return _request('/signout', {
+    method: 'POST',
+    credentials: 'include',
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
     },
   });
 };
+
+export const checkToken = () => {
+  return _request('/users/me', {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+};
+

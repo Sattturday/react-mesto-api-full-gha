@@ -17,24 +17,17 @@ class Api {
   }
 
   getUserInfo() {
-    const token = localStorage.getItem('token');
-
     return this._request('/users/me', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
+      credentials: 'include',
     });
   }
 
   setUserInfo({ name, about }) {
-    const token = localStorage.getItem('token');
-
     return this._request('/users/me', {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         name: name,
@@ -44,24 +37,17 @@ class Api {
   }
 
   getInitialCards() {
-    const token = localStorage.getItem('token');
-
     return this._request('/cards', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
+      credentials: 'include',
     });
   }
 
   addCard({ name, link }) {
-    const token = localStorage.getItem('token');
-    
     return this._request('/cards', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         name: name,
@@ -71,25 +57,21 @@ class Api {
   }
 
   _addLikeCard(id) {
-    const token = localStorage.getItem('token');
-    
     return this._request(`/cards/${id}/likes`, {
       method: 'PUT',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
       },
     });
   }
 
   _deleteLikeCard(id) {
-    const token = localStorage.getItem('token');
-    
     return this._request(`/cards/${id}/likes`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
       },
     });
   }
@@ -103,25 +85,18 @@ class Api {
   }
 
   deleteCard(cardId) {
-    const token = localStorage.getItem('token');
-    
     return this._request(`/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
+      credentials: 'include',
     });
   }
 
   updateAvatar({ avatar }) {
-    const token = localStorage.getItem('token');
-    
     return this._request('/users/me/avatar', {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         avatar: avatar,

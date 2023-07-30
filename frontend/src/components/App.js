@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { AppContext } from '../contexts/AppContext';
-import { login, register, checkToken } from '../utils/auth';
+import { login, logout, register, checkToken } from '../utils/auth';
 import api from '../utils/api';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
@@ -153,8 +153,8 @@ function App() {
   function handleLogin(values) {
     function makeRequest() {
       return login(values).then((data) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
+        if (data._id) {
+          localStorage.setItem('userId', data._id);
           setUserEmail(values.email);
           setLoggedIn(true);
           navigate('/react-mesto-auth');
@@ -168,7 +168,7 @@ function App() {
   }
 
   function tokenCheck() {
-    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
     function makeRequest() {
       return checkToken().then((data) => {
@@ -178,7 +178,7 @@ function App() {
       });
     }
 
-    if (token) {
+    if (userId) {
       handleSubmit(makeRequest, false);
     }
   }
@@ -218,9 +218,18 @@ function App() {
 
   // выход из приложения
   function handleLogout() {
-    localStorage.removeItem('token');
-    setLoggedIn(false);
-    setUserEmail('');
+    function makeRequest() {
+      return logout().then((data) => {
+        if (data) {
+          localStorage.removeItem('userId');
+          setLoggedIn(false);
+          setUserEmail('');
+          } else {
+          return;
+        }
+      });
+    }
+    handleSubmit(makeRequest, false);
   }
 
   return (

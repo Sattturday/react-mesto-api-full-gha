@@ -5,19 +5,13 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const auth = (req, res, next) => {
-  // const { jwt } = req.cookies;
+  const token = req.cookies.jwt;
 
-  // if (!jwt) {
-  //   next(new UnauthorizedError(messages.shared.badToken));
-  //   return;
-  // }
-  const { authorization } = req.headers;
-  if (!authorization.startsWith('Bearer')) {
+  if (!token) {
     next(new UnauthorizedError(messages.shared.badToken));
     return;
   }
 
-  const token = authorization.split('Bearer ')[1];
   let payload;
 
   try {
