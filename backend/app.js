@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
 const routes = require('./routes');
 const handleErrors = require('./middlewares/errors');
@@ -15,11 +16,21 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000, DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
+
 app.use(cors({
   origin: ['http://localhost:3000', 'https://sattturday.nomoredomains.sbs'],
   credentials: true,
   maxAge: 30,
 }));
+
+const limiter = rateLimit(
+  {
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  },
+);
 
 mongoose
   .connect(DATABASE_URL)
@@ -34,6 +45,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use(limiter);
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
