@@ -10,10 +10,10 @@
 5. Mesto (версия с фронтендом и бэкендом) ⬅ этот репозиторий
 
 ### Инструкции для доступа
-#### ***Часть с фронтендом***
+- #### Часть с фронтендом
 [Открыть приложение Mesto в браузере](https://sattturday.nomoredomains.sbs)
 
-#### ***Сервер с API***
+- #### Сервер с API
 https://api.sattturday.nomoredomains.sbs/react-mesto-auth <br>
 IP 158.160.69.214
 
