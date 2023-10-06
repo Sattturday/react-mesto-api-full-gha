@@ -11,7 +11,7 @@
 
 ### Инструкции для доступа
 - #### Часть с фронтендом
-[Открыть приложение Mesto в браузере](https://sattturday.nomoredomains.sbs)
+Открыть в браузере [приложение Mesto](https://sattturday.nomoredomains.sbs)
 
 - #### Сервер с API
 https://api.sattturday.nomoredomains.sbs/react-mesto-auth <br>
