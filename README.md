@@ -64,6 +64,7 @@ https://api.sattturday.nomoredomains.sbs/react-mesto-auth <br>
 git clone https://github.com/Sattturday/react-mesto-api-full-gha.git
 ```
 ***Бэкенд***
+
 Перейдите в директорию backend и установите пакеты NPM
 ```
 npm install
@@ -74,6 +75,7 @@ npm run dev
 ```
 
 ***Фронтенд***
+
 Перейдите в директорию frontend и установите пакеты NPM
 ```
 npm install
