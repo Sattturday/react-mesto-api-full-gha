@@ -3,7 +3,7 @@
 Это продолжение работы над проектом Mesto: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
 Работа выполнена в рамках серии проeктных работ на курсе Web-разработчик (Яндекс Практикум).
 
-<img src="https://github.com/Sattturday/Sattturday/blob/main/Mesto.gif" alt="demo" width="800">
+<img src="https://github.com/Sattturday/Sattturday/blob/main/Mesto.gif" alt="demo" width="600">
 
 
 1. [Mesto (версия на чистом JavaScript)](https://github.com/Sattturday/mesto)
